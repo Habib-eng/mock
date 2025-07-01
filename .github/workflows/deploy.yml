@@ -19,9 +19,11 @@ jobs:
         node-version: 22
 
     - name: Install dependencies
-      run: pnpm install
+      working-directory: ./Frontend
+      run: npm install
 
     - name: Build Vite project
+      working-directory: ./Frontend
       run: npm run build
 
     - name: Deploy to /var/www/growtion
@@ -29,4 +31,4 @@ jobs:
         # Remove old files
         rm -rf /var/www/growtion/*
         # Copy new build
-        cp -r dist/* /var/www/growtion/
+        cp -r ./Frontend/dist/* /var/www/growtion/
